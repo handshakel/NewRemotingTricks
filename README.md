@@ -4,6 +4,7 @@ This repository provides further details and resources on the [CODE WHITE blog p
 
 - `RemotingServer`: a restricted .NET Remoting server
 - `RemotingClient_MBRO`: a client that creates a `MarshalByRefObject` on the server using a XAML gadget
+- `RemotingClient_MBRO_BruteForcer`: a client that enumerates object names
 - `RemotingClient_MBRO_Lazy`: a client that creates a `MarshalByrefObject` on the server using `Lazy<T>`
 - `RemotingClient_MBVO`: a client that sends a serializable `MarshalByRefObject` *by value*
 
