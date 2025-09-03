@@ -24,6 +24,15 @@ A client that implements the trick of creating a `MarshalByRefObject` on the ser
 It creates a [`WebClient`](https://learn.microsoft.com/en-us/dotnet/api/system.net.webclient?view=netframework-4.8.1) that can remotely read and write files on the server.
 
 
+## `RemotingClient_MBRO_BruteForcer`
+
+A client that enumerates all the given object names in the word list from the server. For technical details, see `RemotingClient_MBRO`. Use with:
+
+```powershell
+.\RemotingClient_MBRO_BruteForcer.exe tcp://127.0.0.1:12345/ .\object.list C:\Windows\win.ini
+```
+
+
 ## `RemotingClient_MBRO_Lazy`
 
 A client that implements the trick of creating a `MarshalByRefObject` on the server side and coercing the server to serialize it. Opposed to the `RemotingClient_MBRO` above, it only requires the deserialization of a [`System.Lazy<T>`](https://learn.microsoft.com/en-us/dotnet/api/system.lazy-1?view=netframework-4.8.1) object, which creates an instance of the specified type argument `T` during serialization.
