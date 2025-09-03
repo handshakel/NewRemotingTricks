@@ -126,7 +126,7 @@ namespace CodeWhite.Remoting.RemotingClient_MBRO_BruteForcer
             Console.Error.WriteLine("  <fileUrl>           Path to the target file (required)");
             Console.Error.WriteLine();
             Console.Error.WriteLine("Example:");
-            Console.Error.WriteLine($@"  {exeName} -v tcp://127.0.0.1:12345/DummyService object.list C:\Windows\win.ini");
+            Console.Error.WriteLine($@"  {exeName} -v tcp://127.0.0.1:12345/ object.list C:\Windows\win.ini");
             Environment.Exit(1);
         }
     }
