@@ -1,0 +1,42 @@
+name: Build .NET Framework Projects and Upload Artifacts
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    name: Build Projects and Upload Artifacts
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v5
+
+      - name: Setup MSBuild
+        uses: microsoft/setup-msbuild@v2
+
+      - name: Restore NuGet Packages
+        run: nuget restore NewRemotingTricks.sln
+
+      - name: Build Solution
+        run: msbuild NewRemotingTricks.sln /p:Configuration=Debug
+
+      - name: Collect All bin/Debug Artifacts
+        run: |
+          mkdir artifacts
+          Get-ChildItem -Path . -Recurse -Include bin -Directory | ForEach-Object {
+            $debugPath = Join-Path $_.FullName "Debug"
+            if (Test-Path $debugPath) {
+              $dest = Join-Path "artifacts" ($debugPath -replace "[:\\\/]", "_")
+              Copy-Item $debugPath -Destination $dest -Recurse
+            }
+          }
+
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: Debug-Binaries
+          path: artifacts/
