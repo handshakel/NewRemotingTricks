@@ -69,11 +69,11 @@ namespace CodeWhite.Remoting.RemotingClient_MBRO_BruteForcer
                         string result = remoteWebClient.DownloadString(fileUrl);
                     }
                     catch (WebException ex) {
-                        Console.WriteLine($"Service object found: {word}, but the specified file is not available on the remote host\n");
+                        Console.WriteLine($"Service object name found: {word}, but the specified file is not available on the remote host\n");
                         continue;
                     }
 
-                    Console.WriteLine($"Service object found: {word}\n");
+                    Console.WriteLine($"Service object name found: {word}\n");
                 }
                 catch (NullReferenceException ex) {
                     if (program.verbose) {
